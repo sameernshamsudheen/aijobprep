@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 9, "column": 0}, "map": {"version":3,"sources":["file:///Users/sameershamsudheen/aijobprep/src/app/onboarding/page.tsx"],"sourcesContent":["export default function OnboardingPage() {\n  return <main className=\"p-6\">Onboarding</main>;\n}\n"],"names":[],"mappings":";;;;;AAAe,SAAS;IACtB,qBAAO,8OAAC;QAAK,WAAU;kBAAM;;;;;;AAC/B","debugId":null}}]
+}

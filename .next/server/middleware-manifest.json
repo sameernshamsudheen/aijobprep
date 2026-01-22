@@ -1,0 +1,59 @@
+{
+  "version": 3,
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/_63dd104d._.js",
+        "server/edge/chunks/node_modules_@opentelemetry_api_build_esm_9706894f._.js",
+        "server/edge/chunks/node_modules_@bufbuild_protobuf_dist_esm_e8606cf1._.js",
+        "server/edge/chunks/node_modules_@arcjet_protocol_0c492877._.js",
+        "server/edge/chunks/node_modules_@connectrpc_connect_dist_esm_2e5be2d1._.js",
+        "server/edge/chunks/node_modules_@clerk_shared_dist_runtime_57451156._.js",
+        "server/edge/chunks/node_modules_@clerk_backend_dist_ddaa39aa._.js",
+        "server/edge/chunks/node_modules_@clerk_nextjs_dist_esm_521d2976._.js",
+        "server/edge/chunks/node_modules_zod_v3_ea5b6cbe._.js",
+        "server/edge/chunks/node_modules_457dab14._.js",
+        "server/edge/chunks/[root-of-the-server]__70bac341._.js",
+        "server/edge/chunks/turbopack-edge-wrapper_c92f6999.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*))(\\\\.json)?[\\/#\\?]?$",
+          "originalSource": "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)"
+        },
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?(?:\\/(api|trpc))(.*)(\\\\.json)?[\\/#\\?]?$",
+          "originalSource": "/(api|trpc)(.*)"
+        }
+      ],
+      "wasm": [
+        {
+          "name": "wasm_284248077f370a33",
+          "filePath": "server/edge/chunks/dd92d_modules_@arcjet_analyze-wasm_wasm_arcjet_analyze_js_req_component_core_325b988e.wasm"
+        },
+        {
+          "name": "wasm_4da35616df4692c2",
+          "filePath": "server/edge/chunks/8069e_@arcjet_analyze-wasm_wasm_arcjet_analyze_js_req_component_core2_325b988e.wasm"
+        },
+        {
+          "name": "wasm_9541a21c039b644",
+          "filePath": "server/edge/chunks/8069e_@arcjet_analyze-wasm_wasm_arcjet_analyze_js_req_component_core3_325b988e.wasm"
+        }
+      ],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "development",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "eQflppZrpIzZyAQC1+VX9t0AqfHmmmsun/MCW2cVbLQ=",
+        "__NEXT_PREVIEW_MODE_ID": "a0cf370092e7ade5ad9899b1dee48682",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "4bf394d8f68d92f449eff11943409573546fa19a5587a2f13ff19bcb68b3bb17",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "9dc9024211f4ca519c928febae33f8e837d58df8ee407588cf1438b4c413c8a3"
+      }
+    }
+  },
+  "sortedMiddleware": [
+    "/"
+  ],
+  "functions": {}
+}

@@ -1,0 +1,19 @@
+{
+  "app": {
+    "[project]/src/app/_not-found/page": [
+      "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
+    ],
+    "[project]/src/app/app/job-infos/[jobInfoId]/interviews/new/page": [
+      "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
+    ],
+    "[project]/src/app/app/job-infos/[jobInfoId]/interviews/page": [
+      "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
+    ],
+    "[project]/src/app/app/job-infos/[jobInfoId]/page": [
+      "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pages": {},
+  "pagesUsingSizeAdjust": false
+}

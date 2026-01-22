@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 37, "column": 0}, "map": {"version":3,"sources":["file:///Users/sameershamsudheen/aijobprep/src/providers/theme-provider.tsx"],"sourcesContent":["\"use client\";\n\nimport type { ReactNode } from \"react\";\nimport { ThemeProvider as NextThemesProvider } from \"next-themes\";\n\ntype ThemeProviderProps = {\n  children: ReactNode;\n};\n\nexport default function ThemeProvider({ children }: ThemeProviderProps) {\n  return (\n    <NextThemesProvider\n      attribute=\"class\"\n      defaultTheme=\"system\"\n      enableSystem\n      disableTransitionOnChange\n    >\n      {children}\n    </NextThemesProvider>\n  );\n}\n"],"names":[],"mappings":";;;;AAGA;AAHA;;;AASe,SAAS,cAAc,EAAE,QAAQ,EAAsB;IACpE,qBACE,8OAAC,iKAAkB;QACjB,WAAU;QACV,cAAa;QACb,YAAY;QACZ,yBAAyB;kBAExB;;;;;;AAGP","debugId":null}}]
+}

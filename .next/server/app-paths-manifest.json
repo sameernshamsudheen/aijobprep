@@ -1,0 +1,6 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/app/job-infos/[jobInfoId]/interviews/new/page": "app/app/job-infos/[jobInfoId]/interviews/new/page.js",
+  "/app/job-infos/[jobInfoId]/interviews/page": "app/app/job-infos/[jobInfoId]/interviews/page.js",
+  "/app/job-infos/[jobInfoId]/page": "app/app/job-infos/[jobInfoId]/page.js"
+}
