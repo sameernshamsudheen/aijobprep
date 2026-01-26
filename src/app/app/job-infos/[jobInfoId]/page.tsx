@@ -46,9 +46,9 @@ const options = [
 export default async function JobInfoPage({
   params,
 }: {
-  params: { jobInfoId: string }
+  params: Promise<{ jobInfoId: string }>
 }) {
-  const { jobInfoId } = params
+  const { jobInfoId } = await params
 
   const { userId, redirectToSignIn } = await getCurrentUser()
   if (userId == null) return redirectToSignIn()

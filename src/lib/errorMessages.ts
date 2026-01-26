@@ -1,0 +1,2 @@
+export const PLAN_LIMIT_MESSAGE = "PLAN_LIMIT"
+export const RATE_LIMIT_MESSAGE = "RATE_LIMIT"

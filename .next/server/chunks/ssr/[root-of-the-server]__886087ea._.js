@@ -216,7 +216,7 @@ function formatExperienceLevel(level) {
 
 var { a: __turbopack_async_module__ } = __turbopack_context__;
 __turbopack_async_module__(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
-/* __next_internal_action_entry_do_not_use__ [{"e0e7dc261d7a260efa197f5908b3d34f845ff33e39":"$$RSC_SERVER_CACHE_0"},"",""] */ __turbopack_context__.s({
+/* __next_internal_action_entry_do_not_use__ [{"e0ea4993aaf192ffd265262aa16074c90a70adf59a":"$$RSC_SERVER_CACHE_0"},"",""] */ __turbopack_context__.s({
     "$$RSC_SERVER_CACHE_0": ()=>$$RSC_SERVER_CACHE_0,
     "default": ()=>JobInfoPage
 });
@@ -282,7 +282,7 @@ const options = [
     }
 ];
 async function JobInfoPage({ params }) {
-    const { jobInfoId } = params;
+    const { jobInfoId } = await params;
     const { userId, redirectToSignIn } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$lib$2f$getcurrentUser$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getCurrentUser"])();
     if (userId == null) return redirectToSignIn();
     const jobInfo = await getJobInfo(jobInfoId, userId);
@@ -433,13 +433,13 @@ async function JobInfoPage({ params }) {
         columnNumber: 5
     }, this);
 }
-var $$RSC_SERVER_CACHE_0 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$cache$2d$wrapper$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["cache"])("default", "e0e7dc261d7a260efa197f5908b3d34f845ff33e39", 0, async function getJobInfo(id, userId) {
+var $$RSC_SERVER_CACHE_0 = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$cache$2d$wrapper$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["cache"])("default", "e0ea4993aaf192ffd265262aa16074c90a70adf59a", 0, async function getJobInfo(id, userId) {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$use$2d$cache$2f$cache$2d$tag$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["cacheTag"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$features$2f$jobinfos$2f$dbCache$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["getJobInfoIdTag"])(id));
     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$drizzle$2f$db$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["db"].query.JobInfoTable.findFirst({
         where: (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["and"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$drizzle$2f$schema$2f$job$2d$info$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["JobInfoTable"].id, id), (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$drizzle$2d$orm$2f$sql$2f$expressions$2f$conditions$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["eq"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$drizzle$2f$schema$2f$job$2d$info$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["JobInfoTable"].userId, userId))
     });
 });
-(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])($$RSC_SERVER_CACHE_0, "e0e7dc261d7a260efa197f5908b3d34f845ff33e39", null);
+(0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$build$2f$webpack$2f$loaders$2f$next$2d$flight$2d$loader$2f$server$2d$reference$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["registerServerReference"])($$RSC_SERVER_CACHE_0, "e0ea4993aaf192ffd265262aa16074c90a70adf59a", null);
 Object["defineProperty"]($$RSC_SERVER_CACHE_0, "name", {
     value: "getJobInfo",
     writable: false

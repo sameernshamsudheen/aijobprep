@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { clientEnv } from "@/data/env/client"
 import { JobInfoTable } from "@/drizzle/schema"
-import { createInterview, updateInterview } from "@/features/interviews/actions"
+import { createInterview, updateInterview } from "@/features/interviews/action"
 import { errorToast } from "@/lib/errorToast"
 import { CondensedMessages } from "@/services/hume/components/CondensedMessages"
 import { condenseChatMessages } from "@/services/hume/lib/condensedChat"
@@ -27,18 +27,53 @@ export function StartCall({
     imageUrl: string
   }
 }) {
-  const { connect, readyState, chatMetadata, callDurationTimestamp } =
-    useVoice()
+  const {
+    connect,
+    readyState,
+    chatMetadata,
+    callDurationTimestamp,
+    error,
+    status,
+    isError,
+    isMicrophoneError,
+    isSocketError,
+  } = useVoice()
   const [interviewId, setInterviewId] = useState<string | null>(null)
   const durationRef = useRef(callDurationTimestamp)
   const router = useRouter()
   durationRef.current = callDurationTimestamp
+
+  useEffect(() => {
+    console.log("StartCall: readyState", readyState)
+  }, [readyState])
+
+  useEffect(() => {
+    if (chatMetadata == null) return
+    console.log("StartCall: chatMetadata update", chatMetadata)
+  }, [chatMetadata])
+
+  useEffect(() => {
+    if (error == null && status == null) return
+    console.log("StartCall: status", status)
+    console.log("StartCall: voice error", error)
+    if (!isError) return
+    if (error?.type === "mic_error") {
+      errorToast(error.message)
+    } else if (error?.type === "socket_error") {
+      errorToast(error.message)
+    }
+  }, [error, isError, status])
 
   // Sync chat ID
   useEffect(() => {
     if (chatMetadata?.chatId == null || interviewId == null) {
       return
     }
+    console.log("StartCall: chatMetadata received", chatMetadata)
+    console.log("StartCall: syncing chatId", {
+      interviewId,
+      chatId: chatMetadata.chatId,
+    })
     updateInterview(interviewId, { humeChatId: chatMetadata.chatId })
   }, [chatMetadata?.chatId, interviewId])
 
@@ -73,25 +108,39 @@ export function StartCall({
         <Button
           size="lg"
           onClick={async () => {
-            const res = await createInterview({ jobInfoId: jobInfo.id })
-            if (res.error) {
-              return errorToast(res.message)
-            }
-            setInterviewId(res.id)
+            console.log("StartCall: start clicked")
+            try {
+              const res = await createInterview({ jobInfoId: jobInfo.id })
+              if (res.error) {
+                return errorToast(res.message)
+              }
 
-            connect({
-              auth: { type: "accessToken", value: accessToken },
-              configId: clientEnv.NEXT_PUBLIC_HUME_CONFIG_ID,
-              sessionSettings: {
-                type: "session_settings",
-                variables: {
-                  userName: user.name,
-                  title: jobInfo.title || "Not Specified",
-                  description: jobInfo.description,
-                  experienceLevel: jobInfo.experienceLevel,
+              setInterviewId(res.id)
+
+              console.log("StartCall: created interview", res.id)
+              console.log("StartCall: connect config", {
+                configId: clientEnv.NEXT_PUBLIC_HUME_CONFIG_ID,
+                accessTokenLength: accessToken?.length ?? 0,
+              })
+              await connect({
+                auth: { type: "accessToken", value: accessToken },
+                configId: clientEnv.NEXT_PUBLIC_HUME_CONFIG_ID,
+                sessionSettings: {
+                  type: "session_settings",
+                  variables: {
+                    userName: user.name,
+                    title: jobInfo.title || "Not Specified",
+                    description: jobInfo.description,
+                    experienceLevel: jobInfo.experienceLevel,
+                  },
                 },
-              },
-            })
+              })
+              console.log("StartCall: connect resolved")
+            } catch (err) {
+              const message =
+                err instanceof Error ? err.message : "Failed to start interview"
+              errorToast(message)
+            }
           }}
         >
           Start Interview
@@ -125,7 +174,7 @@ function Messages({ user }: { user: { name: string; imageUrl: string } }) {
   const { messages, fft } = useVoice()
 
   const condensedMessages = useMemo(() => {
-    return condenseChatMessages(messages)
+    return condenseChatMessages(messages as any)
   }, [messages])
 
   return (

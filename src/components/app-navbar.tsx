@@ -1,41 +1,90 @@
-import Link from "next/link";
-import { SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+"use client"
 
-import ThemeToggle from "@/components/theme-toggle";
-import type { UserTable } from "@/drizzle/schema/user";
+import {
+  BookOpenIcon,
+  BrainCircuitIcon,
+  FileSlidersIcon,
+  LogOut,
+  SpeechIcon,
+  User,
+} from "lucide-react"
+import { ThemeToggle } from "@/components/theme-toggle"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { SignOutButton, useClerk } from "@clerk/nextjs"
+import Link from "next/link"
+import { UserAvatar } from "@/features/users/components/UserAvatar"
+import { useParams, usePathname } from "next/navigation"
+import { Button } from "@/components/ui/button"
 
-type AppNavbarProps = {
-  user: typeof UserTable.$inferSelect;
-};
+const navLinks = [
+  { name: "Interviews", href: "interviews", Icon: SpeechIcon },
+  { name: "Questions", href: "questions", Icon: BookOpenIcon },
+  { name: "Resume", href: "resume", Icon: FileSlidersIcon },
+]
 
-export default function AppNavbar({ user }: AppNavbarProps) {
+export default function AppNavbar({
+  user,
+}: {
+  user: { name: string; imageUrl: string }
+}) {
+  const { openUserProfile } = useClerk()
+  const { jobInfoId } = useParams()
+  const pathName = usePathname()
+
   return (
-    <header className="border-b h-header">
-      <div className="container flex h-full flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center justify-between gap-6">
-          <Link href="/app" className="text-lg font-semibold">
-            AI Job Prep
-          </Link>
-          <nav className="flex gap-4 text-sm text-slate-600">
-            <Link href="/app">Dashboard</Link>
-            <Link href="/onboarding">Onboarding</Link>
-          </nav>
-        </div>
-        <div className="flex items-center gap-3">
+    <nav className="h-header border-b">
+      <div className="container flex h-full items-center justify-between">
+        <Link href="/app" className="flex items-center gap-2">
+          <BrainCircuitIcon className="size-8 text-primary" />
+          <span className="text-xl font-bold">Landr</span>
+        </Link>
+
+        <div className="flex items-center gap-4">
+          {typeof jobInfoId === "string" &&
+            navLinks.map(({ name, href, Icon }) => {
+              const hrefPath = `/app/job-infos/${jobInfoId}/${href}`
+
+              return (
+                <Button
+                  variant={pathName === hrefPath ? "secondary" : "ghost"}
+                  key={name}
+                  asChild
+                  className="cursor-pointer max-sm:hidden"
+                >
+                  <Link href={hrefPath}>
+                    <Icon />
+                    {name}
+                  </Link>
+                </Button>
+              )
+            })}
+
           <ThemeToggle />
-          {user ? (
-            <>
-              <span className="text-sm font-medium">{user.name}</span>
-              <UserButton />
-            </>
-          ) : (
-            <>
-              <SignInButton />
-              <SignUpButton />
-            </>
-          )}
+
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <UserAvatar user={user} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuItem onClick={() => openUserProfile()}>
+                <User className="mr-2" />
+                Profile
+              </DropdownMenuItem>
+              <SignOutButton>
+                <DropdownMenuItem>
+                  <LogOut className="mr-2" />
+                  Logout
+                </DropdownMenuItem>
+              </SignOutButton>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
-    </header>
-  );
+    </nav>
+  )
 }

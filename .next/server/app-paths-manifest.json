@@ -1,6 +1,14 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
+  "/api/ai/questions/generate-feedback/route": "app/api/ai/questions/generate-feedback/route.js",
+  "/api/ai/questions/generate-question/route": "app/api/ai/questions/generate-question/route.js",
+  "/api/ai/resume/analyze/route": "app/api/ai/resume/analyze/route.js",
+  "/app/job-infos/[jobInfoId]/interviews/[interviewsId]/page": "app/app/job-infos/[jobInfoId]/interviews/[interviewsId]/page.js",
   "/app/job-infos/[jobInfoId]/interviews/new/page": "app/app/job-infos/[jobInfoId]/interviews/new/page.js",
   "/app/job-infos/[jobInfoId]/interviews/page": "app/app/job-infos/[jobInfoId]/interviews/page.js",
-  "/app/job-infos/[jobInfoId]/page": "app/app/job-infos/[jobInfoId]/page.js"
+  "/app/job-infos/[jobInfoId]/page": "app/app/job-infos/[jobInfoId]/page.js",
+  "/app/job-infos/[jobInfoId]/questions/page": "app/app/job-infos/[jobInfoId]/questions/page.js",
+  "/app/job-infos/[jobInfoId]/resume/page": "app/app/job-infos/[jobInfoId]/resume/page.js",
+  "/app/page": "app/app/page.js",
+  "/app/upgrade/page": "app/app/upgrade/page.js"
 }

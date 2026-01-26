@@ -1,0 +1,3 @@
+{
+  "/api/ai/questions/generate-feedback/route": "app/api/ai/questions/generate-feedback/route.js"
+}

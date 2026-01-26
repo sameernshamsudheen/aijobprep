@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 9, "column": 0}, "map": {"version":3,"sources":["file:///Users/sameershamsudheen/aijobprep/src/app/page.tsx"],"sourcesContent":["import { SignInButton, UserButton } from \"@clerk/nextjs\";\n\nexport default function HomePage() {\n  return (\n    <main className=\"\">\n      <SignInButton />\n      <UserButton />\n    </main>\n  );\n}\n"],"names":[],"mappings":";;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;QAAK,WAAU;;0BACd,8OAAC,sMAAY;;;;;0BACb,8OAAC,oMAAU;;;;;;;;;;;AAGjB","debugId":null}}]
-}

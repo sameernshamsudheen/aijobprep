@@ -45,10 +45,19 @@ async function SuspendedComponent({ jobInfoId }: { jobInfoId: string }) {
   const jobInfo = await getJobInfo(jobInfoId, userId)
   if (jobInfo == null) return notFound()
 
-  const accessToken = await fetchAccessToken({
-    apiKey: serverEnv.HUME_API_KEY,
-    secretKey: serverEnv.HUME_SECRET_KEY,
-  })
+  let accessToken = ""
+  try {
+    accessToken = await fetchAccessToken({
+      apiKey: serverEnv.HUME_API_KEY,
+      secretKey: serverEnv.HUME_SECRET_KEY,
+    })
+    console.log(
+      "NewInterviewPage: accessToken length",
+      accessToken?.length ?? 0
+    )
+  } catch (err) {
+    console.error("NewInterviewPage: fetchAccessToken failed", err)
+  }
 
   return (
     <VoiceProvider>

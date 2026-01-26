@@ -10,6 +10,12 @@
     padding-inline: 2rem;
     max-width: 96rem;
   }
+  .h-screen-header {
+    height: var(--spacing-screen-header);
+  }
+  .min-h-screen-header {
+    min-height: var(--spacing-screen-header);
+  }
 }
 
 @theme inline {

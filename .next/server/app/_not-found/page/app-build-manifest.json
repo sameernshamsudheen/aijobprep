@@ -2,9 +2,9 @@
   "pages": {
     "/_not-found/page": [
       "static/chunks/[root-of-the-server]__5ffa27ff._.css",
-      "static/chunks/node_modules_@clerk_nextjs_dist_esm_app-router_1a2c2b3e._.js",
-      "static/chunks/node_modules_49aefd9a._.js",
-      "static/chunks/src_providers_theme-provider_tsx_5e715e42._.js",
+      "static/chunks/node_modules_@clerk_nextjs_dist_esm_app-router_6ac1de33._.js",
+      "static/chunks/node_modules_f6975ecd._.js",
+      "static/chunks/src_5870ac10._.js",
       "static/chunks/src_app_layout_tsx_c1af44eb._.js",
       "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_f3ba736c._.js",
       "static/chunks/node_modules_next_dist_compiled_react-dom_1f56dc06._.js",

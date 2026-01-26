@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { Outfit } from "next/font/google";
 import ClerkProvider from "../services/clerk/components/ClerkProvider";
 import ThemeProvider from "../providers/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -20,7 +21,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
         <body className={outfit.variable}>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            {children}
+            <Toaster />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
