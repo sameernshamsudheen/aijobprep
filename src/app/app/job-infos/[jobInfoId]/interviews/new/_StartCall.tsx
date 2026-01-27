@@ -75,7 +75,7 @@ export function StartCall({
       chatId: chatMetadata.chatId,
     })
     updateInterview(interviewId, { humeChatId: chatMetadata.chatId })
-  }, [chatMetadata?.chatId, interviewId])
+  }, [chatMetadata, interviewId, updateInterview])
 
   // Sync duration
   useEffect(() => {
