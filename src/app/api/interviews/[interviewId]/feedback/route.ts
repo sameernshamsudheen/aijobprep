@@ -8,8 +8,9 @@ import { NextResponse } from "next/server"
 
 export async function POST(
   _request: Request,
-  { params }: { params: { interviewId: string } }
+  { params }: { params: Promise<{ interviewId: string }> }
 ) {
+  const { interviewId } = await params
   const { userId, user } = await getCurrentUser({ allData: true })
   if (userId == null || user == null) {
     return NextResponse.json(
@@ -19,7 +20,7 @@ export async function POST(
   }
 
   const interview = await db.query.InterviewsTable.findFirst({
-    where: eq(InterviewsTable.id, params.interviewId),
+    where: eq(InterviewsTable.id, interviewId),
     with: {
       jobInfo: {
         columns: {

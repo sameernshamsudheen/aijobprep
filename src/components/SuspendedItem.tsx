@@ -5,7 +5,7 @@ export function SuspendedItem<T>({
   fallback,
   result,
 }: {
-  item: Promise<T>
+  item: T | Promise<T>
   fallback: ReactNode
   result: (item: T) => ReactNode
 }) {
@@ -20,7 +20,7 @@ async function InnerComponent<T>({
   item,
   result,
 }: {
-  item: Promise<T>
+  item: T | Promise<T>
   result: (item: T) => ReactNode
 }) {
   return result(await item)

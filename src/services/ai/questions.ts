@@ -1,10 +1,13 @@
 import {
   JobInfoTable,
   questionDifficultyEnum,
+  questionDifficultyOptions,
   QuestionsTable,
 } from "@/drizzle/schema"
 import { CoreMessage, streamText } from "ai"
 import { google } from "./models/google"
+
+type QuestionDifficulty = (typeof questionDifficultyOptions)[number]
 
 export function generateAiQuestion({
   jobInfo,
