@@ -3,10 +3,10 @@
     "[project]/src/app/_not-found/page": [
       "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
     ],
-    "[project]/src/app/app/job-infos/[jobInfoId]/interviews/[interviewsId]/page": [
+    "[project]/src/app/app/job-infos/[jobInfoId]/edit/page": [
       "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
     ],
-    "[project]/src/app/app/job-infos/[jobInfoId]/interviews/new/page": [
+    "[project]/src/app/app/job-infos/[jobInfoId]/interviews/[interviewsId]/page": [
       "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
     ],
     "[project]/src/app/app/job-infos/[jobInfoId]/interviews/page": [
@@ -21,10 +21,19 @@
     "[project]/src/app/app/job-infos/[jobInfoId]/resume/page": [
       "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
     ],
+    "[project]/src/app/app/job-infos/new/page": [
+      "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
+    ],
     "[project]/src/app/app/page": [
       "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
     ],
     "[project]/src/app/app/upgrade/page": [
+      "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
+    ],
+    "[project]/src/app/page": [
+      "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
+    ],
+    "[project]/src/app/sign-in/[[...sign-in]]/page": [
       "static/media/41f62e8b64c1e968-s.p.07dd827d.woff2"
     ]
   },
