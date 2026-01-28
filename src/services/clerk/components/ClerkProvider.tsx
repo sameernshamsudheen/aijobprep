@@ -7,7 +7,7 @@ type ClerkProviderProps = {
 };
 
 export default function ClerkProvider({ children }: ClerkProviderProps) {
-  return <OriginalClerkProvider clerkJSUrl="https://clerk.com/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+  return <OriginalClerkProvider 
  appearance={{
         cssLayerName: "vendor",
         variables: {
