@@ -9,11 +9,11 @@ export default async function AppLayout({
   children: React.ReactNode;
 }) {
   const { userId, user } = await getCurrentUser({ allData: true });
-  if (userId == null) {
-    redirect("/");
+  if (userId ===null) {
+    redirect("/sign-in");
   }
 
-  if (user == null) {
+  if (!user) {
     redirect("/onboarding");
   }
 

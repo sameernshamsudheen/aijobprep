@@ -28,7 +28,7 @@ const aj = arcjet({
 });
 
 export default clerkMiddleware(async (auth, req) => {
-  if (process.env.ARCJET_KEY) {
+  if (serverEnv.ARCJET_KEY) {
     const decision = await aj.protect(req);
     if (decision.isDenied()) {
       return new Response("Forbidden", { status: 403 });
