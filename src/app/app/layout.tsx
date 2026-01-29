@@ -6,7 +6,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const { userId, user } = await getCurrentUser({ allData: true });
 
   if (!userId) redirect("/sign-in");
-  if (!user) redirect("/onboarding");
+  if (!user) redirect("/sign-in");
 
   return (
     <>

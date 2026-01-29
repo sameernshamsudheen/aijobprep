@@ -8,20 +8,20 @@ import { useEffect } from "react"
 export function OnboardingClient({ userId }: { userId: string }) {
   const router = useRouter()
 
-  useEffect(() => {
-    const intervalId = setInterval(async () => {
-      const user = await getUser(userId)
-      console.log("Checked user:", user)
-      if (user == null) return
+  // useEffect(() => {
+  //   const intervalId = setInterval(async () => {
+  //     const user = await getUser(userId)
+  //     console.log("Checked user:", user)
+  //     if (user == null) return
 
-      router.replace("/app")
-      clearInterval(intervalId)
-    }, 2500)
+  //     router.replace("/app")
+  //     clearInterval(intervalId)
+  //   }, 2500)
 
-    return () => {
-      clearInterval(intervalId)
-    }
-  }, [userId, router])
+  //   return () => {
+  //     clearInterval(intervalId)
+  //   }
+  // }, [userId, router])
 
   return <Loader2Icon className="animate-spin size-24" />
 }
