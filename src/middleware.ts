@@ -61,13 +61,7 @@ export default clerkMiddleware(async (auth, req) => {
 
   // ✅ Protect non-public routes (IMPORTANT: must RETURN)
   if (!isPublicRoute(req)) {
-    // auth.protect() can return a Response (redirect/forbidden) or a SignedInAuthObject.
-    // Await and return any Response to satisfy NextMiddleware return types; otherwise continue.
-    const protectionResult = await auth.protect();
-    if (protectionResult instanceof Response) {
-      return protectionResult;
-    }
-    return NextResponse.next();
+    return auth.protect();
   }
 
   return NextResponse.next();
