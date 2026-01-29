@@ -5,6 +5,7 @@ import { pgEnum, pgTable, varchar } from "drizzle-orm/pg-core";
 import { timestamps, uuidId } from "../schema-helpers";
 import { UserTable } from "./user";
 import { InterviewsTable } from "./interviews";
+import { ScheduledInterviewsTable } from "./scheduled-interviews";
 import { QuestionsTable } from "./questions";
 
 export const experienceLevelOptions = [
@@ -37,4 +38,5 @@ export const jobInfoRelations = relations(JobInfoTable, ({ one, many }) => ({
   }),
   questions:many(QuestionsTable),
   interviews: many(InterviewsTable),
+  scheduledInterviews: many(ScheduledInterviewsTable),
 }));

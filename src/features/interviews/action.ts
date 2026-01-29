@@ -120,24 +120,27 @@ export async function generateInterviewFeedback(interviewId: string) {
     }
   }
 
-  if (interview.humeChatId == null) {
+  if (!interview.humeChatId) {
     return {
       error: true,
       message: "Interview has not been completed yet",
     }
   }
 
-  // const feedback = await generateAiInterviewFeedback({
-  // })
+  const feedback = await generateAiInterviewFeedback({
+    humeChatId: interview.humeChatId,
+    jobInfo: interview.jobInfo,
+    userName: user.name,
+  })
 
-  // if (feedback == null) {
-  //   return {
-  //     error: true,
-  //     message: "Failed to generate feedback",
-  //   }
-  // }
+  if (!feedback) {
+    return {
+      error: true,
+      message: "Failed to generate feedback",
+    }
+  }
 
-  // await updateInterviewDb(interviewId, { feedback })
+  await updateInterviewDb(interviewId, { feedback: feedback.slice(0, 2000) })
 
   return { error: false }
 }

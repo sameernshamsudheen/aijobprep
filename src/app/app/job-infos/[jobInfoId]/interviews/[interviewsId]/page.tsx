@@ -15,11 +15,6 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { FeedbackActions } from "./FeedbackActions"
 import { SuspendedItem } from "@/components/SuspendedItem"
 import { SkeletonButton } from "@/components/Skeleton"
-import { ActionButton } from "@/components/ui/action-button"
-import { generateInterviewFeedback } from "@/features/interviews/action"
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@radix-ui/react-dialog"
-import { Button } from "@/components/ui/button"
-import { MarkdownRenderer } from "@/components/MarkdownRenderer"
 
 export default async function InterviewPage({
   params,
@@ -67,28 +62,12 @@ export default async function InterviewPage({
               {interview.duration}
             </p>
           </div>
-              <SuspendedItem
+          <SuspendedItem
             item={interview}
             fallback={<SkeletonButton className="w-32" />}
-            result={i =>
-              i.feedback == null ? (
-                <ActionButton
-                  action={generateInterviewFeedback.bind(null, i.id)}
-                >
-                  Generate Feedback
-                </ActionButton>
-              ) : (
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button>View Feedback</Button>
-                  </DialogTrigger>
-                  <DialogContent className="md:max-w-3xl lg:max-w-4xl max-h-[calc(100%-2rem)] overflow-y-auto flex flex-col">
-                    <DialogTitle>Feedback</DialogTitle>
-                    <MarkdownRenderer>{i.feedback}</MarkdownRenderer>
-                  </DialogContent>
-                </Dialog>
-              )
-            }
+            result={i => (
+              <FeedbackActions interviewId={i.id} feedback={i.feedback} />
+            )}
           />
         </div>
         <Suspense fallback={<MessagesSkeleton />}>

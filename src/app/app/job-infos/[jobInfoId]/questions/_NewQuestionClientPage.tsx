@@ -137,8 +137,8 @@ function QuestionContainer({
         <ResizablePanelGroup direction="vertical" className="flex-grow">
           <ResizablePanel id="question" defaultSize={25} minSize={5}>
             <ScrollArea className="h-full min-w-48 *:h-full">
-              {status === "init" && question == null ? (
-                <p className="text-base md:text-lg flex items-center justify-center h-full p-6">
+              {status === "init" && (!question || question.trim() === "") ? (
+                <p className="text-base md:text-lg text-foreground flex items-center justify-center h-full p-6">
                   Get started by selecting a question difficulty above.
                 </p>
               ) : (
@@ -204,6 +204,7 @@ function Controls({
             disabled={isLoading}
             variant="outline"
             size="sm"
+            className="bg-transparent hover:bg-transparent"
           >
             <LoadingSwap isLoading={isLoading}>Skip</LoadingSwap>
           </Button>
