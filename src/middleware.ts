@@ -1,11 +1,9 @@
-// middleware.ts
 import arcjet, { detectBot, shield, slidingWindow } from "@arcjet/next";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
 import { serverEnv } from "./data/env/server";
 
 const isPublicRoute = createRouteMatcher([
-  "/",
+ "/",
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/sso-callback(.*)",
@@ -21,37 +19,15 @@ const aj = arcjet({
       mode: "LIVE",
       allow: ["CATEGORY:SEARCH_ENGINE", "CATEGORY:MONITOR", "CATEGORY:PREVIEW"],
     }),
-    slidingWindow({ mode: "LIVE", interval: "1m", max: 100 }),
+    slidingWindow({
+      mode: "LIVE",
+      interval: "1m",
+      max: 100,
+    }),
   ],
 });
 
-function isStaticAsset(pathname: string) {
-  return (
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/favicon.ico") ||
-    pathname.startsWith("/robots.txt") ||
-    pathname.startsWith("/sitemap") ||
-    /\.(?:html?|css|js(?!on)|jpe?g|png|gif|webp|svg|ico|ttf|woff2?|map)$/.test(
-      pathname
-    )
-  );
-}
-
 export default clerkMiddleware(async (auth, req) => {
-  const url = req.nextUrl;
-
-  // ✅ App Router internal requests (RSC + prefetch)
-  const isRscFetch =
-    req.headers.get("RSC") === "1" ||
-    req.headers.get("next-router-prefetch") === "1" ||
-    url.searchParams.has("_rsc");
-
-  // ✅ Never redirect/protect these internal requests (prevents /app?_rsc=... loops)
-  if (isRscFetch || isStaticAsset(url.pathname)) {
-    return NextResponse.next();
-  }
-
-  // ✅ Arcjet only for "real" requests (not internal)
   if (serverEnv.ARCJET_KEY) {
     const decision = await aj.protect(req);
     if (decision.isDenied()) {
@@ -59,18 +35,16 @@ export default clerkMiddleware(async (auth, req) => {
     }
   }
 
-  // ✅ Protect non-public routes (IMPORTANT: must RETURN)
   if (!isPublicRoute(req)) {
-    return auth.protect();
+    await auth.protect();
   }
-
-  return NextResponse.next();
 });
 
 export const config = {
   matcher: [
-    // Match all routes except Next internals/static files
+    // Skip Next.js internals and all static files, unless found in search params
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Always run for API routes
     "/(api|trpc)(.*)",
   ],
 };
