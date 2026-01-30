@@ -117,6 +117,10 @@ export function StartCall({
 
               setInterviewId(res.id)
 
+              if (!clientEnv.NEXT_PUBLIC_HUME_CONFIG_ID) {
+                return errorToast("Hume config is missing")
+              }
+
               console.log("StartCall: created interview", res.id)
               console.log("StartCall: connect config", {
                 configId: clientEnv.NEXT_PUBLIC_HUME_CONFIG_ID,
