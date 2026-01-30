@@ -44,12 +44,15 @@ async function getUserWithFallback(id: string) {
     clerkUser.username ||
     "User"
 
-  await upsertUser({
-    id: clerkUser.id,
-    email,
-    name,
-    imageUrl: clerkUser.imageUrl || "",
-  })
+  await upsertUser(
+    {
+      id: clerkUser.id,
+      email,
+      name,
+      imageUrl: clerkUser.imageUrl || "",
+    },
+    { revalidate: false }
+  )
 
   return getUser(id)
 }

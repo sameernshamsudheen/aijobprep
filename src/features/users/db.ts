@@ -3,7 +3,10 @@ import { UserTable } from "@/drizzle/schema"
 import { eq } from "drizzle-orm"
 import { revalidateUserCache } from "../users/dbCache"
 
-export async function upsertUser(user: typeof UserTable.$inferInsert) {
+export async function upsertUser(
+  user: typeof UserTable.$inferInsert,
+  { revalidate = true }: { revalidate?: boolean } = {}
+) {
   await db
     .insert(UserTable)
     .values(user)
@@ -12,7 +15,9 @@ export async function upsertUser(user: typeof UserTable.$inferInsert) {
       set: user,
     })
 
-  revalidateUserCache(user.id)
+  if (revalidate) {
+    revalidateUserCache(user.id)
+  }
 }
 
 export async function deleteUser(id: string) {
