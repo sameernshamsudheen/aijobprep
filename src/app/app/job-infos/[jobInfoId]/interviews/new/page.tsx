@@ -38,7 +38,7 @@ async function SuspendedComponent({ jobInfoId }: { jobInfoId: string }) {
   const { userId, redirectToSignIn, user } = await getCurrentUser({
     allData: true,
   })
-  if (userId == null || user == null) return redirectToSignIn()
+  // if (userId == null || user == null) return redirectToSignIn()
 
 //   if (!(await canCreateInterview())) return redirect("/app/upgrade")
 

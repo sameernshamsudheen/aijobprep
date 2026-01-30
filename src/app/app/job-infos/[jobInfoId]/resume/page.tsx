@@ -25,7 +25,7 @@ export default async function ResumePage({
 }
 
 async function SuspendedComponent({ jobInfoId }: { jobInfoId: string }) {
-  if (!(await canRunResumeAnalysis())) return redirect("/app/upgrade")
+  // if (!(await canRunResumeAnalysis())) return redirect("/app/upgrade")
 
   return <ResumePageClient jobInfoId={jobInfoId} />
 }

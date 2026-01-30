@@ -42,12 +42,12 @@ export default async function InterviewsPage({
 
 async function SuspendedPage({ jobInfoId }: { jobInfoId: string }) {
   const { userId, redirectToSignIn } = await getCurrentUser()
-  if (userId == null) return redirectToSignIn()
+  // if (userId == null) return redirectToSignIn()
 
   const interviews = await getInterviews(jobInfoId, userId)
-  if (interviews.length === 0) {
-    return redirect(`/app/job-infos/${jobInfoId}/interviews/new`)
-  }
+  // if (interviews.length === 0) {
+  //   return redirect(`/app/job-infos/${jobInfoId}/interviews/new`)
+  // }
   return (
     <div className="space-y-6 w-full">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">

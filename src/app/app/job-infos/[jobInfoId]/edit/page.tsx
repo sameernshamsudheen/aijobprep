@@ -40,7 +40,7 @@ export default async function JobInfoNewPage({
 
 async function SuspendedForm({ jobInfoId }: { jobInfoId: string }) {
   const { userId, redirectToSignIn } = await getCurrentUser()
-  if (userId == null) return redirectToSignIn()
+  // if (userId == null) return redirectToSignIn()
 
   const jobInfo = await getJobInfo(jobInfoId, userId)
   if (jobInfo == null) return notFound()

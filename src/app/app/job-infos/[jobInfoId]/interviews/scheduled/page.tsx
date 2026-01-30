@@ -19,7 +19,7 @@ export default async function ScheduledInterviewsPage({
 }) {
   const { jobInfoId } = await params
   const { userId, redirectToSignIn } = await getCurrentUser()
-  if (userId == null) return redirectToSignIn()
+  // if (userId == null) return redirectToSignIn()
 
   const scheduledInterviews = await getScheduledInterviews(jobInfoId, userId)
 

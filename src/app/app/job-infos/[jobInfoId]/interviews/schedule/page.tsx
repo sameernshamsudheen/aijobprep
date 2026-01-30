@@ -9,7 +9,7 @@ export default async function ScheduleInterviewPage({
 }) {
   const { jobInfoId } = await params
   const { userId, redirectToSignIn } = await getCurrentUser()
-  if (userId == null) return redirectToSignIn()
+  // if (userId == null) return redirectToSignIn()
 
   return (
     <div className="container py-6 space-y-6">
