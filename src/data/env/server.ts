@@ -4,17 +4,17 @@ import { z } from "zod";
 
 export const serverEnv = createEnv({
   server: {
-    CLERK_SECRET_KEY: z.string().min(1),
-    ARCJET_KEY: z.string().min(1),
+    CLERK_SECRET_KEY: z.string().min(1).optional(),
+    ARCJET_KEY: z.string().min(1).optional(),
 
-    DATABASE_URL: z.string().min(1), // Neon
+    DATABASE_URL: z.string().min(1).optional(), // Neon
 
-    HUME_API_KEY: z.string().min(1),
-    HUME_SECRET_KEY: z.string().min(1),
-    GEMINI_API_KEY: z.string().min(1),
-    RESEND_API_KEY: z.string().min(1),
-    EMAIL_FROM: z.string().min(1),
-    CRON_SECRET: z.string().min(1),
+    HUME_API_KEY: z.string().min(1).optional(),
+    HUME_SECRET_KEY: z.string().min(1).optional(),
+    GEMINI_API_KEY: z.string().min(1).optional(),
+    RESEND_API_KEY: z.string().min(1).optional(),
+    EMAIL_FROM: z.string().min(1).optional(),
+    CRON_SECRET: z.string().min(1).optional(),
   },
   experimental__runtimeEnv: process.env,
   emptyStringAsUndefined: true,
