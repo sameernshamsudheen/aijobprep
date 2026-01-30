@@ -46,17 +46,21 @@ async function SuspendedComponent({ jobInfoId }: { jobInfoId: string }) {
   if (jobInfo == null) return notFound()
 
   let accessToken = ""
-  try {
-    accessToken = await fetchAccessToken({
-      apiKey: serverEnv.HUME_API_KEY,
-      secretKey: serverEnv.HUME_SECRET_KEY,
-    })
-    console.log(
-      "NewInterviewPage: accessToken length",
-      accessToken?.length ?? 0
-    )
-  } catch (err) {
-    console.error("NewInterviewPage: fetchAccessToken failed", err)
+  if (serverEnv.HUME_API_KEY && serverEnv.HUME_SECRET_KEY) {
+    try {
+      accessToken = await fetchAccessToken({
+        apiKey: serverEnv.HUME_API_KEY,
+        secretKey: serverEnv.HUME_SECRET_KEY,
+      })
+      console.log(
+        "NewInterviewPage: accessToken length",
+        accessToken?.length ?? 0
+      )
+    } catch (err) {
+      console.error("NewInterviewPage: fetchAccessToken failed", err)
+    }
+  } else {
+    console.warn("NewInterviewPage: HUME keys missing; skipping access token")
   }
 
   return (
