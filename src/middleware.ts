@@ -1,6 +1,4 @@
-import arcjet, { detectBot, shield, slidingWindow } from "@arcjet/next";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
-import { serverEnv } from "./data/env/server";
 
 const isPublicRoute = createRouteMatcher([
  "/",
@@ -11,30 +9,7 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhooks/clerk(.*)",
 ]);
 
-const aj = arcjet({
-  key: serverEnv.ARCJET_KEY,
-  rules: [
-    shield({ mode: "LIVE" }),
-    detectBot({
-      mode: "LIVE",
-      allow: ["CATEGORY:SEARCH_ENGINE", "CATEGORY:MONITOR", "CATEGORY:PREVIEW"],
-    }),
-    slidingWindow({
-      mode: "LIVE",
-      interval: "1m",
-      max: 100,
-    }),
-  ],
-});
-
 export default clerkMiddleware(async (auth, req) => {
-  if (serverEnv.ARCJET_KEY) {
-    const decision = await aj.protect(req);
-    if (decision.isDenied()) {
-      return new Response("Forbidden", { status: 403 });
-    }
-  }
-
   if (!isPublicRoute(req)) {
     await auth.protect();
   }
