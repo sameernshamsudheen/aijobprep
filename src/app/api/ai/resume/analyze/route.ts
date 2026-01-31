@@ -12,7 +12,11 @@ export async function POST(req: Request) {
   const { userId } = await getCurrentUser()
 
   if (userId == null) {
-    return new Response("You are not logged in", { status: 401 })
+    console.warn("resume/analyze: unauthenticated request")
+    return new Response("You are not logged in", {
+      status: 401,
+      headers: { "x-error-code": "not_logged_in" },
+    })
   }
 
   const formData = await req.formData()
@@ -42,13 +46,23 @@ export async function POST(req: Request) {
 
   const jobInfo = await getJobInfo(jobInfoId, userId)
   if (jobInfo == null) {
+    console.warn("resume/analyze: jobInfo not found or unauthorized", {
+      userId,
+      jobInfoId,
+    })
     return new Response("You do not have permission to do this", {
       status: 403,
+      headers: { "x-error-code": "job_info_forbidden" },
     })
   }
 
-  if (!(await canRunResumeAnalysis())) {
-    return new Response(PLAN_LIMIT_MESSAGE, { status: 403 })
+  const hasPlanAccess = await canRunResumeAnalysis()
+  if (!hasPlanAccess) {
+    console.warn("resume/analyze: plan limit", { userId })
+    return new Response(PLAN_LIMIT_MESSAGE, {
+      status: 403,
+      headers: { "x-error-code": "plan_limit" },
+    })
   }
 
   const res = await analyzeResumeForJob({
