@@ -7,20 +7,25 @@ import { useEffect } from "react"
 
 export function OnboardingClient({ userId }: { userId: string }) {
   const router = useRouter()
-
   useEffect(() => {
-    const intervalId = setInterval(async () => {
-      const user = await getUser(userId)
-      if (!user) return;
 
-      router.replace("/app")
-      clearInterval(intervalId)
-    }, 250)
+   console.log("OnboardingClient: userId", userId)
 
-    return () => {
-      clearInterval(intervalId)
-    }
-  }, [userId, router])
+  }, [])
+
+  // useEffect(() => {
+  //   const intervalId = setInterval(async () => {
+  //     const user = await getUser(userId)
+  //     if (!user) return;
+
+  //     router.replace("/app")
+  //     clearInterval(intervalId)
+  //   }, 250)
+
+  //   return () => {
+  //     clearInterval(intervalId)
+  //   }
+  // }, [userId, ])
 
   return <Loader2Icon className="animate-spin size-24" />
 }
