@@ -32,9 +32,9 @@ export default async function QuestionsPage({
 
 async function SuspendedComponent({ jobInfoId }: { jobInfoId: string }) {
   const { userId, redirectToSignIn } = await getCurrentUser()
-  // if (userId == null) return redirectToSignIn()
+  if (userId == null) return redirectToSignIn()
 
-  // if (!(await canCreateQuestion())) return redirect("/app/upgrade")
+  if (!(await canCreateQuestion())) return redirect("/app/upgrade")
 
   const jobInfo = await getJobInfo(jobInfoId, userId)
   if (jobInfo == null) return notFound()
