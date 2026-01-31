@@ -11,8 +11,9 @@ import { fetchAccessToken } from "hume"
 
 import { VoiceProvider } from "@humeai/voice-react"
 import { StartCall } from "./_StartCall"
-// import { canCreateInterview } from "@/features/interviews/permissions"
+
 import { serverEnv } from "@/data/env/server"
+import { canCreateInterview } from "@/features/interviews/permission"
 
 
 export default async function NewInterviewPage({
@@ -38,9 +39,9 @@ async function SuspendedComponent({ jobInfoId }: { jobInfoId: string }) {
   const { userId, redirectToSignIn, user } = await getCurrentUser({
     allData: true,
   })
-  // if (userId == null || user == null) return redirectToSignIn()
+  if (userId == null || user == null) return redirectToSignIn()
 
-//   if (!(await canCreateInterview())) return redirect("/app/upgrade")
+  if (!(await canCreateInterview())) return redirect("/app/upgrade")
 
   const jobInfo = await getJobInfo(jobInfoId, userId)
   if (jobInfo == null) return notFound()

@@ -26,7 +26,7 @@ export default async function InterviewPage({
   const { userId, user, redirectToSignIn } = await getCurrentUser({
     allData: true,
   })
-  // if (userId == null || user == null) return redirectToSignIn()
+  if (userId == null || user == null) return redirectToSignIn()
 
   const interviewIds = await getInterviewIdsForJobInfo(jobInfoId, userId)
   console.log("Interview IDs for jobInfo:", jobInfoId, interviewIds)
