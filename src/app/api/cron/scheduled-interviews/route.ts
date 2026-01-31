@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server"
-import { and, eq, isNull, lte } from "drizzle-orm"
-
-import { db } from "@/drizzle/db"
-import { ScheduledInterviewsTable } from "@/drizzle/schema"
-import { serverEnv } from "@/data/env/server"
-import { sendInterviewInvite } from "@/services/email/sendInterviewInvite"
-import { updateScheduledInterview } from "@/features/scheduled-interviews/db"
 
 export async function POST(request: Request) {
+  void request
+  return NextResponse.json(
+    { error: "Scheduled interviews are disabled" },
+    { status: 410 }
+  )
+
   const secret = request.headers.get("x-cron-secret")
   if (secret !== serverEnv.CRON_SECRET) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })

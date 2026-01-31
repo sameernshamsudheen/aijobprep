@@ -16,6 +16,10 @@ export async function createScheduledInterview(
   jobInfoId: string,
   unsafeData: z.infer<typeof scheduledInterviewSchema>
 ): Promise<{ error: true; message: string } | { error: false; id: string }> {
+  void jobInfoId
+  void unsafeData
+  return { error: true, message: "Scheduled interviews are disabled" }
+
   const { userId } = await getCurrentUser()
   if (userId == null) {
     return { error: true, message: "You don't have permission to do this" }
@@ -77,6 +81,9 @@ export async function createScheduledInterview(
 export async function cancelScheduledInterview(
   scheduledInterviewId: string
 ): Promise<{ error: true; message: string } | { error: false }> {
+  void scheduledInterviewId
+  return { error: true, message: "Scheduled interviews are disabled" }
+
   const { userId } = await getCurrentUser()
   if (userId == null) {
     return { error: true, message: "You don't have permission to do this" }

@@ -50,19 +50,14 @@ async function SuspendedPage({ jobInfoId }: { jobInfoId: string }) {
   // }
   return (
     <div className="space-y-6 w-full">
-      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl">Interviews</h1>
-        <div className="flex gap-2">
-          <Button asChild variant="outline">
-            <Link href={`/app/job-infos/${jobInfoId}/interviews/scheduled`}>
-              Scheduled Interviews
-            </Link>
-          </Button>
-          <Button asChild>
-            <Link href={`/app/job-infos/${jobInfoId}/interviews/new`}>
-              <PlusIcon />
-              New Interview
-            </Link>
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl">Interviews</h1>
+          <div className="flex gap-2">
+            <Button asChild>
+              <Link href={`/app/job-infos/${jobInfoId}/interviews/new`}>
+                <PlusIcon />
+                New Interview
+              </Link>
           </Button>
         </div>
       </div>
