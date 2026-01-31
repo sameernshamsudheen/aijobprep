@@ -1,17 +1,24 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isPublicRoute = createRouteMatcher([
- "/",
   "/sign-in(.*)",
-  "/sign-up(.*)",
-  "/sso-callback(.*)",
-  "/onboarding(.*)",
-  "/api/webhooks/clerk(.*)",
+  "/",
+  "/api/webhooks(.*)",
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
+  const isRsc = req.headers.get("rsc") === "1";
+  const path = req.nextUrl.pathname + req.nextUrl.search;
+  const { userId, sessionId } = await auth();
+  console.log("middleware: auth", {
+    path,
+    isRsc,
+    userId,
+    sessionId,
+  });
+
   if (!isPublicRoute(req)) {
-    // await auth.protect();
+    await auth.protect();
   }
 });
 
